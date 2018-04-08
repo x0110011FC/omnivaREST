@@ -21,7 +21,7 @@ public class Invoice {
 
     @NonNull
     @JsonIgnore
-    private Long invoiceId; // length 10 to 25
+    private Long invoiceId;
     @JsonIgnore
     private String firstName;
     @JsonIgnore
@@ -31,7 +31,7 @@ public class Invoice {
     private String description;
 
     @PersistenceConstructor
-    public Invoice(Long invoiceId /*, String firstName, String lastName, Boolean payStatus, String description*/) {
+    public Invoice(Long invoiceId) {
         this.id = COUNTER.incrementAndGet();
         this.invoiceId = invoiceId;
     }
@@ -98,18 +98,4 @@ public class Invoice {
         return "Invoice " + invoiceId + " payment status " + payStatus;
     }
 
-
-/*    Funnel<Invoice> invoiceFunnel = new Funnel<Invoice>() {
-        @Override
-        public void funnel(Invoice invoice, PrimitiveSink primitiveSink) {
-            primitiveSink
-            .putLong(invoiceId)
-                    .putString(firstName, Charsets.UTF_8)
-                    .putString(lastName, Charsets.UTF_8)
-                    .putBoolean(payStatus)
-                    .putString(description, Charsets.UTF_8);
-        }
-    };
-
-    BloomFilter<Invoice> filter = BloomFilter.create(invoiceFunnel, 5000000, 0.01);*/
 }
